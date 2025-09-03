@@ -1,0 +1,3 @@
+[submodule "jobs/aws-cell-tower-pipeline"]
+	path = jobs/aws-cell-tower-pipeline
+	url = https://github.com/njholcombe/aws-cell-tower-pipeline.git
