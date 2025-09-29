@@ -17,6 +17,17 @@ aws dynamodb update-table \
     "[{\"Create\":{\"IndexName\": \"job_name-index\",\"KeySchema\":[{\"AttributeName\":\"job_name\",\"KeyType\":\"HASH\"}],\"Projection\":{\"ProjectionType\":\"ALL\"}}}]"
 
 
+# --- MD_JOBS_DET ---
+aws dynamodb create-table \
+  --table-name MD_JOBS_DET \
+  --attribute-definitions \
+      AttributeName=job_id,AttributeType=N \
+      AttributeName=detail_name,AttributeType=S \
+  --key-schema \
+      AttributeName=job_id,KeyType=HASH \
+      AttributeName=detail_name,KeyType=RANGE \
+  --billing-mode PAY_PER_REQUEST
+
 # --- MD_JOB_CONFIG ---
 aws dynamodb create-table \
   --table-name MD_JOB_CONFIG \
