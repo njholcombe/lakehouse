@@ -1,0 +1,12 @@
+{
+  "TableName": "MD_TGT",
+  "AttributeDefinitions": [
+    { "AttributeName": "target_id", "AttributeType": "N" },
+    { "AttributeName": "target_name", "AttributeType": "S" }
+  ],
+  "KeySchema": [
+    { "AttributeName": "target_id", "KeyType": "HASH" },
+    { "AttributeName": "target_name", "KeyType": "RANGE" }
+  ],
+  "BillingMode": "PAY_PER_REQUEST"
+}

@@ -17,9 +17,9 @@ aws dynamodb update-table \
     "[{\"Create\":{\"IndexName\": \"job_name-index\",\"KeySchema\":[{\"AttributeName\":\"job_name\",\"KeyType\":\"HASH\"}],\"Projection\":{\"ProjectionType\":\"ALL\"}}}]"
 
 
-# --- MD_JOBCONFIG ---
+# --- MD_JOB_CONFIG ---
 aws dynamodb create-table \
-  --table-name MD_JOBCONFIG \
+  --table-name MD_JOB_CONFIG \
   --attribute-definitions \
       AttributeName=job_id,AttributeType=N \
       AttributeName=config_name,AttributeType=S \
@@ -28,9 +28,9 @@ aws dynamodb create-table \
       AttributeName=config_name,KeyType=RANGE \
   --billing-mode PAY_PER_REQUEST
 
-# --- MD_SRC_CTRL ---
+# --- MD_SRC ---
 aws dynamodb create-table \
-  --table-name MD_SRC_CTRL \
+  --table-name MD_SRC \
   --attribute-definitions AttributeName=source_id,AttributeType=N \
   --key-schema AttributeName=source_id,KeyType=HASH \
   --billing-mode PAY_PER_REQUEST
@@ -46,9 +46,9 @@ aws dynamodb create-table \
       AttributeName=detail_name,KeyType=RANGE \
   --billing-mode PAY_PER_REQUEST
 
-# --- MD_TGT_CTRL ---
+# --- MD_TGT ---
 aws dynamodb create-table \
-  --table-name MD_TGT_CTRL \
+  --table-name MD_TGT \
   --attribute-definitions AttributeName=target_id,AttributeType=N \
   --key-schema AttributeName=target_id,KeyType=HASH \
   --billing-mode PAY_PER_REQUEST
@@ -71,16 +71,6 @@ aws dynamodb create-table \
   --key-schema AttributeName=dataset_id,KeyType=HASH \
   --billing-mode PAY_PER_REQUEST
 
-# --- MD_SRC_TGT_CTRL ---
-aws dynamodb create-table \
-  --table-name MD_SRC_TGT_CTRL \
-  --attribute-definitions \
-      AttributeName=src_id,AttributeType=N \
-      AttributeName=tgt_id,AttributeType=N \
-  --key-schema \
-      AttributeName=src_id,KeyType=HASH \
-      AttributeName=tgt_id,KeyType=RANGE \
-  --billing-mode PAY_PER_REQUEST
 
 
 # --- MD_JOB_EXECUTION ---

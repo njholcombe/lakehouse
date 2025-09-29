@@ -3,8 +3,8 @@
 
 set -e
 
-# --- MD_SRC_CTRL ---
-aws dynamodb put-item --table-name MD_SRC_CTRL --item '{
+# --- MD_SRC ---
+aws dynamodb put-item --table-name MD_SRC --item '{
   "source_id": {"N": "1"},
   "source_name": {"S": "OpenCellID"},
   "enabled": {"BOOL": true}
@@ -22,12 +22,12 @@ aws dynamodb put-item --table-name MD_SRC_DET --item '{
   "detail_value": {"S": "token"}
 }'
 
-# --- MD_TGT_CTRL ---
+# --- MD_TGT ---
 aws dynamodb batch-write-item --request-items '{
-  "MD_TGT_CTRL": [
-    {"PutRequest": {"Item": {"target_id": {"N": "1"}, "target_name": {"S": "Raw Zone"}, "target_type": {"S": "s3"}, "target_location": {"S": "s3://celldata-raw-w1"}, "enabled": {"BOOL": true}}}},
-    {"PutRequest": {"Item": {"target_id": {"N": "2"}, "target_name": {"S": "Curated Zone"}, "target_type": {"S": "s3"}, "target_location": {"S": "s3://celldata-curated-w1"}, "enabled": {"BOOL": true}}}},
-    {"PutRequest": {"Item": {"target_id": {"N": "3"}, "target_name": {"S": "Results Zone"}, "target_type": {"S": "s3"}, "target_location": {"S": "s3://celldata-results-w1"}, "enabled": {"BOOL": true}}}}
+  "MD_TGT": [
+  {"PutRequest": {"Item": {"target_id": {"N": "1"}, "target_name": {"S": "Raw Zone"}, "target_description": {"S": "Raw Zone data layer (as-is) data"}, "enabled": {"BOOL": true}}}},
+	  {"PutRequest": {"Item": {"target_id": {"N": "2"}, "target_name": {"S": "Curated Zone"}, "target_description": {"S": "Curated Zone data layer (cleansed, formatted)"}, "enabled": {"BOOL": true}}}},
+    {"PutRequest": {"Item": {"target_id": {"N": "3"}, "target_name": {"S": "Results Zone"}, "target_description": {"S": "Results Zone data layer meant for data analysis efforts"}, "enabled": {"BOOL": true}}}}
   ]
 }'
 
@@ -52,22 +52,11 @@ aws dynamodb put-item --table-name MD_JOBS --item '{
   "target_dataset_id": {"S": "silver-opencellid"}
 }'
 
-# --- MD_JOBCONFIG ---
+# --- MD_JOB_CONFIG ---
 aws dynamodb batch-write-item --request-items '{
-  "MD_JOBCONFIG": [
+  "MD_JOB_CONFIG": [
     {"PutRequest": {"Item": {"job_id": {"N": "1"}, "config_name": {"S": "raw_bucket"}, "config_value": {"S": "celldata-raw-w1"}}}},
     {"PutRequest": {"Item": {"job_id": {"N": "1"}, "config_name": {"S": "param_name"}, "config_value": {"S": "/celldata/opencellid/token"}}}},
     {"PutRequest": {"Item": {"job_id": {"N": "1"}, "config_name": {"S": "expected_header"}, "config_value": {"S": "radio,mcc,mnc,lac,cid,lat,lon"}}}}
   ]
 }'
-
-# --- MD_SRC_TGT_CTRL ---
-aws dynamodb put-item --table-name MD_SRC_TGT_CTRL --item '{
-  "src_id": {"N": "1"},
-  "tgt_id": {"N": "1"},
-  "relationship_type": {"S": "ingest"},
-  "enabled": {"BOOL": true},
-  "description": {"S": "OpenCellID raw feed lands in Raw Zone"}
-}'
-
-
