@@ -57,12 +57,16 @@ aws dynamodb create-table \
       AttributeName=detail_name,KeyType=RANGE \
   --billing-mode PAY_PER_REQUEST
 
-# --- MD_TGT ---
 aws dynamodb create-table \
   --table-name MD_TGT \
-  --attribute-definitions AttributeName=target_id,AttributeType=N \
-  --key-schema AttributeName=target_id,KeyType=HASH \
+  --attribute-definitions \
+      AttributeName=target_id,AttributeType=N \
+      AttributeName=target_name,AttributeType=S \
+  --key-schema \
+      AttributeName=target_id,KeyType=HASH \
+      AttributeName=target_name,KeyType=RANGE \
   --billing-mode PAY_PER_REQUEST
+  
 
 # --- MD_TGT_DET ---
 aws dynamodb create-table \
@@ -74,6 +78,8 @@ aws dynamodb create-table \
       AttributeName=target_id,KeyType=HASH \
       AttributeName=detail_name,KeyType=RANGE \
   --billing-mode PAY_PER_REQUEST
+
+  
 
 # --- MD_DATASETS ---
 aws dynamodb create-table \
