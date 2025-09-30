@@ -1,5 +1,5 @@
 #!/bin/bash
-# Seed initial metadata values for OpenCellID job
+# Seed initial metadata values for datalake to accept jobs.
 
 set -e
 
