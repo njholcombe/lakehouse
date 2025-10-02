@@ -40,15 +40,15 @@ aws dynamodb batch-write-item --request-items '{
 aws dynamodb batch-write-item --request-items '{
   "MD_TGT_DET": [
     {"PutRequest": {"Item": {"target_id": {"N": "3"}, "detail_name": {"S": "prefix_path"}, "detail_value": {"S": "gold/opencellid"}}}},
-    {"PutRequest": {"Item": {"target_id": {"N": "3"}, "detail_name": {"S": "target_location"}, "detail_value": {"S": "celldata-results-w1"}}}},
+    {"PutRequest": {"Item": {"target_id": {"N": "3"}, "detail_name": {"S": "target_location"}, "detail_value": {"S": "datalake-presentation-w1"}}}},
     {"PutRequest": {"Item": {"target_id": {"N": "3"}, "detail_name": {"S": "target_type"}, "detail_value": {"S": "s3"}}}},
 
     {"PutRequest": {"Item": {"target_id": {"N": "2"}, "detail_name": {"S": "prefix_path"}, "detail_value": {"S": "silver/opencellid"}}}},
-    {"PutRequest": {"Item": {"target_id": {"N": "2"}, "detail_name": {"S": "target_location"}, "detail_value": {"S": "celldata-curated-w1"}}}},
+    {"PutRequest": {"Item": {"target_id": {"N": "2"}, "detail_name": {"S": "target_location"}, "detail_value": {"S": "datalake-curated-w1"}}}},
     {"PutRequest": {"Item": {"target_id": {"N": "2"}, "detail_name": {"S": "target_type"}, "detail_value": {"S": "s3"}}}},
 
     {"PutRequest": {"Item": {"target_id": {"N": "1"}, "detail_name": {"S": "prefix_path"}, "detail_value": {"S": "bronze/opencellid"}}}},
-    {"PutRequest": {"Item": {"target_id": {"N": "1"}, "detail_name": {"S": "target_location"}, "detail_value": {"S": "celldata-raw-w1"}}}},
+    {"PutRequest": {"Item": {"target_id": {"N": "1"}, "detail_name": {"S": "target_location"}, "detail_value": {"S": "datalake-raw-w1"}}}},
     {"PutRequest": {"Item": {"target_id": {"N": "1"}, "detail_name": {"S": "target_type"}, "detail_value": {"S": "s3"}}}}
   ]
 }'
